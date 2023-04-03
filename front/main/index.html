@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../font/stylesheet.css">
+    <link rel="stylesheet" href="style.css" />
+    <title>La Maison</title>
+  </head>
+
+  <body>
+    <header>
+      <a href="#"><img src="../assets/logo/icon.png" alt="La Maison" /></a>
+      <nav>
+        <ul>
+          <li><a href="#">Produtos</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+        <div class="carousel">
+            <div class="slides">
+              <div class="slide active">
+                <img src="img/slide1.png" alt="Slide 1">
+                <div class="slide-info">
+                    <p>O pinto do meu Pai fugiu com a Galinha da Vizinha</p>
+
+                    <button class="slide-button">Insipire-se</button>
+                </div>
+              </div>
+              <div class="slide">
+                <img src="img/slide2.png" alt="Slide 2">
+              </div>
+              <div class="slide">
+                <img src="img/slide3.png" alt="Slide 3">
+              </div>
+            </div>
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+          </div>
+          
+        
+          
+    </main>
+    <footer></footer>
+    <script src="script.js"></script>
+  </body>
+</html>
