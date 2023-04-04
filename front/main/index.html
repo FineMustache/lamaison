@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../font/stylesheet.css">
+    <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
+    <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
     <link rel="stylesheet" href="style.css" />
     <title>La Maison</title>
   </head>
@@ -26,23 +27,46 @@
             <div class="slides">
               <div class="slide active">
                 <img src="img/slide1.png" alt="Slide 1">
-                <div class="slide-info">
-                    <p>O pinto do meu Pai fugiu com a Galinha da Vizinha</p>
+              </div>
+              <div class="slide">
+                <img src="img/slideBusiness.jpg" alt="Slide 2">
+              </div>
+              <div class="slide">
+                <img src="img/slideOffice.png" alt="Slide 3">
+              </div>
+            </div>
+            <div class="slide-info">
+              <p id="carouselText">Transforme os ares da sua casa</p>
 
-                    <button class="slide-button">Insipire-se</button>
-                </div>
-              </div>
-              <div class="slide">
-                <img src="img/slide2.png" alt="Slide 2">
-              </div>
-              <div class="slide">
-                <img src="img/slide3.png" alt="Slide 3">
-              </div>
+              <button class="slide-button">Inspire-se</button>
             </div>
             <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
             <a class="next" onclick="changeSlide(1)">&#10095;</a>
           </div>
-          
+          <div class="page">
+            <div class="item-section itens-destaque">
+              <div class="section-top">
+                <span>Itens em Destaque</span>
+                <div class="h-line"></div>
+              </div>
+              <div class="section-items">
+                <div class="item-card">
+                  <div class="item-card-image">
+                    <img src="img/prod1.png" alt="">
+                  </div>
+                  <div class="item-card-info">
+                    <span id="prodNome">Pintura Abstrata Fria</span>
+                    <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes</p>
+                    <div class="prod-tags">
+                      <span class="tag">Quadro</span>
+                      <span class="tag">Pintura</span>
+                      <span class="tag">Parede</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         
           
     </main>

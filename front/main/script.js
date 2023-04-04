@@ -1,6 +1,11 @@
 let slideIndex = 1;
 let slides = document.querySelectorAll('.slide');
 let slidesContainer = document.querySelector('.slides');
+let textCarousel = [
+  'Transforme os ares da sua casa',
+  'Destaque o ambiente do seu negócio',
+  'Um novo visual para seu Escritório'
+]
 
 showSlide(slideIndex);
 
@@ -16,5 +21,16 @@ let slideWidth = slides[0].clientWidth;
   if (n < 1) {
     slideIndex = slides.length;
   }
+  setTimeout(() => {
+
+  }, 250)
+  borrarse()
+  setTimeout(() => document.querySelector('#carouselText').innerHTML = textCarousel[slideIndex-1], 250)
+  
   slidesContainer.style.transform = `translateX(${-slideWidth * (slideIndex - 1)}px)`;
+}
+
+function borrarse() {
+  document.querySelector('#carouselText').classList.add('borrouse')
+  setTimeout(() => document.querySelector('#carouselText').classList.remove('borrouse'), 500)
 }
