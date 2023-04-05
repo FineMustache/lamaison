@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model usuario {
+  id Int @id @default(autoincrement())
+  nome String
+  email String
+  cpf String
+  senha String
+  endereco_id Int
+  Endereco endereco @relation(fields: [endereco_id], references: [id])
+}
+
+model categoria {
+  id Int @id @default(autoincrement())
+  nome String
+  Produto_categoria produto_categoria[]
+}
+
+model endereco {
+  id Int @id @default(autoincrement())
+  rua String
+  numero String
+  complemento String
+  Usuario usuario[]
+  
+}
+
+model produto {
+  id Int @id @default(autoincrement())
+  nome String
+  valor Float
+  descricao String
+  imagem String
+  modelo String
+  mtl String
+  textura String
+  superficie String
+  Produto_categoria produto_categoria[]
+  Desconto desconto[]
+}
+
+model produto_categoria {
+  id Int @id @default(autoincrement())
+  id_categoria Int
+  id_produto Int
+  Produto produto @relation(fields: [id_produto], references: [id])
+  Categoria categoria @relation(fields: [id_categoria], references: [id])
+}
+
+model desconto {
+  id Int @id @default(autoincrement())
+  id_produto Int
+  porcentagem_desconto Float
+  Produto produto @relation(fields: [id_produto], references: [id])
+}
+
