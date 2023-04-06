@@ -13,23 +13,22 @@ model usuario {
   email String
   cpf String
   senha String
-  endereco_id Int
-  Endereco endereco @relation(fields: [endereco_id], references: [id])
+  rua String
+  numero String
+  complemento String?
+  bairro String
+  cep String
+  cidade String
+  estado String
+  telefone String?
+  compras compra[]
+  desejos desejo[]
 }
 
 model categoria {
   id Int @id @default(autoincrement())
   nome String
-  Produto_categoria produto_categoria[]
-}
-
-model endereco {
-  id Int @id @default(autoincrement())
-  rua String
-  numero String
-  complemento String
-  Usuario usuario[]
-  
+  produtos produto_categoria[]
 }
 
 model produto {
@@ -42,22 +41,43 @@ model produto {
   mtl String
   textura String
   superficie String
-  Produto_categoria produto_categoria[]
-  Desconto desconto[]
+  desconto Float?
+  categorias produto_categoria[]
+  compras compra_produto[]
+  desejos desejo[]
 }
 
 model produto_categoria {
   id Int @id @default(autoincrement())
   id_categoria Int
   id_produto Int
-  Produto produto @relation(fields: [id_produto], references: [id])
-  Categoria categoria @relation(fields: [id_categoria], references: [id])
+  produto produto @relation(fields: [id_produto], references: [id])
+  categoria categoria @relation(fields: [id_categoria], references: [id])
 }
 
-model desconto {
+model compra {
   id Int @id @default(autoincrement())
-  id_produto Int
-  porcentagem_desconto Float
-  Produto produto @relation(fields: [id_produto], references: [id])
+  valor Float
+  data_compra DateTime
+  data_entrega DateTime
+  id_usuario Int
+  usuario usuario @relation(fields: [id_usuario], references: [id])
+  produtos compra_produto[]
 }
 
+model compra_produto {
+  id Int @id @default(autoincrement())
+  id_compra Int
+  id_produto Int
+  qtde Int @default(1)
+  compra compra @relation(fields: [id_compra], references: [id])
+  produto produto @relation(fields: [id_produto], references: [id])
+}
+
+model desejo {
+  id Int @id @default(autoincrement())
+  id_usuario Int
+  id_produto Int
+  usuario usuario @relation(fields: [id_usuario], references: [id])
+  produto produto @relation(fields: [id_produto], references: [id])
+}
