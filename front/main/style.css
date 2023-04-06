@@ -246,6 +246,7 @@ nav li:hover {
   display: flex;
   flex-direction: column;
   min-width: calc(100% / 5 - 15px);
+  position: relative;
 }
 
 .item-card-image{
@@ -257,6 +258,7 @@ nav li:hover {
   height: calc(500px * 60 / 100);
   width: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .item-card-info{
@@ -290,6 +292,7 @@ nav li:hover {
   color: white;
   font-size: 14pt;
   text-transform: capitalize;
+  cursor: pointer;
 }
 
 .prod-preco{
@@ -404,4 +407,31 @@ footer{
 
 .escolha-top .cta{
   align-self: flex-end;
+}
+
+p{
+  letter-spacing: .5px;
+}
+
+#itemFav{
+  position: absolute;
+  z-index: 2;
+  color: #000000;
+  opacity: 0;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+
+.item-card:hover #itemFav{
+  opacity: .6;
+}
+
+#itemFav:hover{
+  opacity: 1!important;
+}
+
+.item-fav-on{
+  color: red!important;
+  opacity: 1!important;
 }

@@ -34,3 +34,9 @@ function borrarse() {
   document.querySelector('#carouselText').classList.add('borrouse')
   setTimeout(() => document.querySelector('#carouselText').classList.remove('borrouse'), 500)
 }
+
+function setFav(el){
+  el.classList.toggle('fa-regular')
+  el.classList.toggle('fa-solid')
+  el.classList.toggle('item-fav-on')
+}
