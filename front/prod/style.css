@@ -1,3 +1,20 @@
+.section-items::-webkit-scrollbar {
+  height: 5px;
+}
+
+.section-items::-webkit-scrollbar-track {
+  background: #979797;
+}
+
+.section-items::-webkit-scrollbar-thumb {
+  background: #353535;
+}
+
+.section-items::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
+
+
 * {
     box-sizing: border-box;
   }
@@ -7,6 +24,10 @@ html {
   margin: 0;
   padding: 0;
   font-family: 'kaneda_gothic';
+}
+
+p{
+  letter-spacing: 1px;
 }
 
 body {
@@ -97,6 +118,10 @@ main{
     cursor: pointer;
   }
   
+  #prodNome{
+    font-family: 'kaneda_gothic_medium';
+    font-size: 26pt;
+  }
 
   .prod-section {
     display: flex;
@@ -112,11 +137,17 @@ main{
   #prodPrecoOr{
     text-decoration: line-through;
     text-decoration-thickness: 1px;
+    font-size: 22pt;
   }
   
   #prodPreco{
-    font-size: 20pt;
+    font-size: 30pt;
     font-family: 'kaneda_gothic_medium';
+  }
+
+  .prod-preco > p > span{
+    font-family: 'kaneda_gothic_medium';
+    text-decoration: underline;
   }
 
   .prod-image{
@@ -134,3 +165,256 @@ main{
     display: flex;
     flex-direction: column;
   }
+
+.prod-info-container{
+  display: flex;
+  flex-direction: column;
+  font-size: 20pt;
+  justify-content: space-between;
+  padding: 20px 0 20px 20px;
+}
+
+.prod-med{
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 1px;
+  font-size: 18pt;
+}
+
+.prod-med > span{
+  font-family: 'kaneda_gothic_medium';
+  font-size: 22pt;
+}
+
+.prod-med > div{
+  display: flex;
+  gap: 10px;
+}
+
+.prod-med > div > span{
+  font-family: 'kaneda_gothic_medium';
+}
+
+.prod-med > div > span > span{
+  font-family: 'kaneda_gothic';
+}
+
+.btn-add-cart{
+  padding: 15px 20px;
+  font-size: 20pt;
+  font-family: 'kaneda_gothic';
+  letter-spacing: 1px;
+  color: white;
+  background-color: black;
+  border: none;
+}
+
+.add-fav{
+  background-color: transparent;
+  border: 1px solid black;
+  font-size: 12pt;
+}
+
+.buttons{
+  margin-top: 20px;
+  display: flex;
+}
+
+.cur-item-fav-on{
+  color: red!important;
+  opacity: 1!important;
+}
+
+.preview-3d-p{
+  text-decoration: underline;
+  font-family: 'kaneda_gothic_medium';
+  cursor: pointer;
+}
+
+.prod-preco > p:last-child{
+  margin-top: 0;
+}
+
+.scan-container{
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  justify-content: space-between;
+  color: white;
+  background-color: black;
+  align-items: center;
+  height: 200px;
+  font-size: 20pt;
+  margin-bottom: 50px;
+}
+
+.scan-container img{
+  height: 100%;
+  aspect-ratio: 1/1;
+  border: 5px solid white;
+}
+
+.scan-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.scan-info > p:nth-child(1){
+  font-size: 24pt;
+  margin-bottom: 0;
+  font-family: 'kaneda_gothic_medium';
+}
+
+.scan-info a{
+  color: white;
+  font-family: 'kaneda_gothic_medium';
+}
+
+.scan-zone{
+  height: 100%;
+}
+
+.item-section .section-top{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20pt;
+  font-family: 'kaneda_gothic_medium';
+  margin-bottom: 10px;
+}
+
+.item-section .h-line{
+  flex: 1;
+  height: 1px;
+  background-color: black;
+}
+
+.item-section .section-items{
+  display: flex;
+  justify-content: start;
+  gap: 15px;
+  overflow-x: auto;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.item-section .item-card{
+  display: flex;
+  flex-direction: column;
+  min-width: calc(100% / 4 - 15px);
+  position: relative;
+}
+
+.item-section .item-card-image{
+  height: 60%;
+  width: 100%;
+}
+
+.item-section .item-card-image > img{
+  height: calc(500px * 60 / 100);
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.item-section .item-card-info{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.item-section #prodDesc{
+  margin: 0;
+}
+
+.item-section #prodNome{
+  font-family: 'kaneda_gothic_medium';
+  font-size: 22pt;
+}
+
+.item-section .prod-tags{
+  display: flex;
+  justify-content: start;
+  gap: 5px;
+  overflow-x: hidden;
+}
+
+.item-section .tag{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #000;
+  color: white;
+  font-size: 14pt;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.item-section .prod-preco{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.item-section #prodPrecoOr{
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  font-size: 18pt;
+}
+
+.item-section #prodPreco{
+  font-size: 20pt;
+  font-family: 'kaneda_gothic_medium';
+}
+
+.item-section .btn-add-cart{
+  width: 100%;
+  background-color: #000;
+  color: white;
+  font-size: 18pt;
+  padding: 10px;
+  border: none;
+}
+
+#itemFav{
+  position: absolute;
+  z-index: 2;
+  color: #000000;
+  opacity: 0;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+
+.item-card:hover #itemFav{
+  opacity: .6;
+}
+
+#itemFav:hover{
+  opacity: 1!important;
+}
+
+.item-fav-on{
+  color: red!important;
+  opacity: 1!important;
+}
+
+.section-top > span > span{
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  cursor: pointer;
+}
+
+.item-section{
+  margin-top: 50px;
+}
+
+footer{
+  height: 150px;
+  background-color: black;
+  margin-top: 50px;
+}

@@ -42,6 +42,7 @@ model produto {
   textura String
   superficie String
   desconto Float?
+  medidas String
   categorias produto_categoria[]
   compras compra_produto[]
   desejos desejo[]
