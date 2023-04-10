@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 const parser = multer({ storage });
 const create = async (req, res) => {
-    parser.fields([{name: 'img'}, {name: 'textura'}, {name: 'modelo'}, {name: 'mtl'}])(req, res, async err => {
+    parser.fields([{ name: 'img' }, { name: 'textura' }, { name: 'modelo' }, { name: 'mtl' }])(req, res, async err => {
         if (err)
             res.status(500).json({ error: 1, payload: err }).end();
         else {
@@ -30,7 +30,9 @@ const create = async (req, res) => {
                     mtl: req.files.mtl[0].filename,
                     textura: req.files.textura[0].filename,
                     superficie: req.body.superficie,
-                    
+                    desconto: Number(req.body.desconto),
+                    medidas: req.body.medidas
+
                 }
             })
 
@@ -51,16 +53,41 @@ const read = async (req, res) => {
             modelo: true,
             mtl: true,
             textura: true,
-            superficie: true
-            
+            superficie: true,
+            desconto: true,
+            medidas: true
+
         }
     })
 
     res.status(200).json(produto).end()
 }
 
+const update = async (req, res) => {
+    let id = Number(req.body.id)
+    delete req.body.id
+    const produto = await prisma.produto.update({
+        where: {
+            id: id
+        },
+        data: req.body
+    })
+
+    res.status(200).json(produto).end()
+}
+
+const remove = async (req, res) => {
+    const produto = await prisma.produto.delete({
+        where: {
+            id: Number(req.body.id)
+        }
+    })
+    res.status(200).json(produto).end()
+}
+
 module.exports = {
     read,
     create,
-    
+    update,
+    remove
 }
