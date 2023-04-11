@@ -59,8 +59,8 @@ model produto_categoria {
 model compra {
   id Int @id @default(autoincrement())
   valor Float
-  data_compra DateTime
-  data_entrega DateTime
+  data_compra DateTime @default(now())
+  data_entrega DateTime?
   id_usuario Int
   usuario usuario @relation(fields: [id_usuario], references: [id])
   produtos compra_produto[]

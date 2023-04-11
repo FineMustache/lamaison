@@ -9,13 +9,12 @@ const create = async (req, res) => {
             bcrypt.hash(req.body.senha, salt, async function (errCrypto, hash) {
                 if (errCrypto == null) {
                     req.body.senha = hash
-
                     const usuario = await prisma.usuario.createMany({
                         data: req.body
                     })
-
                     res.status(200).json(usuario).end()
                 } else {
+                    console.log(errCrypto)
                     res.status(500).json(errCrypto).end()
                 }
             });
@@ -39,7 +38,7 @@ const login = async (req, res) => {
                 jwt.sign(data, process.env.KEY, { expiresIn: '10m' }, function (err2, token) {
                     if (err2 == null) {
 
-                        res.status(200).json({ "userid": usuario.id, "token": token, "username": usuario.nome, "validacao": true }).end()
+                        res.status(200).json({ "userid": usuario.id, "token": token, "nome": usuario.nome, "validacao": true }).end()
                     } else {
                         res.status(500).json(err2).end()
                     }

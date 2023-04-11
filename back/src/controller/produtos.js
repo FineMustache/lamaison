@@ -55,7 +55,16 @@ const read = async (req, res) => {
             textura: true,
             superficie: true,
             desconto: true,
-            medidas: true
+            medidas: true,
+            categorias: {
+                select: {
+                    categoria: {
+                        select: {
+                            nome: true
+                        }
+                    }
+                }
+            }
 
         }
     })
