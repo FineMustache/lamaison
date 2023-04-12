@@ -9,7 +9,7 @@ const create = async (req, res) => {
             bcrypt.hash(req.body.senha, salt, async function (errCrypto, hash) {
                 if (errCrypto == null) {
                     req.body.senha = hash
-                    const usuario = await prisma.usuario.createMany({
+                    const usuario = await prisma.usuario.create({
                         data: req.body
                     })
                     res.status(200).json(usuario).end()

@@ -19,7 +19,11 @@ const create = async (req, res) => {
         if (err)
             res.status(500).json({ error: 1, payload: err }).end();
         else {
-
+            if (req.files.modelo == undefined) {
+                req.files.modelo = [{filename: null}]
+                req.files.mtl = [{filename: null}]
+                req.files.textura = [{filename: null}]
+            }
             const produto = await prisma.produto.create({
                 data: {
                     nome: req.body.nome,

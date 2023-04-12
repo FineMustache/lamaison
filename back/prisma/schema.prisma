@@ -37,10 +37,10 @@ model produto {
   valor Float
   descricao String
   imagem String
-  modelo String
-  mtl String
-  textura String
-  superficie String
+  modelo String?
+  mtl String?
+  textura String?
+  superficie String?
   desconto Float?
   medidas String
   categorias produto_categoria[]
