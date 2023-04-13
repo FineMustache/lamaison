@@ -8,7 +8,9 @@ const produto_categoria = require("./controller/produtoCat")
 const compra = require("./controller/compra")
 const compra_produto = require("./controller/compraProd")
 const desejo = require("./controller/desejo")
+const arquivos = require("./controller/arquivos")
 
+router.get("/arquivos/:fileName", arquivos.read)
 
 router.post("/produto", produto.create);
 router.get("/produto", produto.read);

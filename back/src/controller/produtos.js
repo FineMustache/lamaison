@@ -2,6 +2,7 @@ const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
 const multer = require('multer');
+const path = require('path')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -46,7 +47,7 @@ const create = async (req, res) => {
 }
 
 const read = async (req, res) => {
-
+    
     const produto = await prisma.produto.findMany({
         select: {
             id: true,
