@@ -77,6 +77,146 @@ const read = async (req, res) => {
     res.status(200).json(produto).end()
 }
 
+const read15 = async (req, res) => {
+    const page = req.params.page
+    const options = req.query
+    var filter = {}
+    var sort = {}
+    if (options.minPrec !== undefined) {
+        filter = {
+            AND: [
+                {
+                    valor: {
+                        gte: Number(options.minPrec)
+                    }
+                },
+                {
+                    valor: {
+                        lte: Number(options.maxPrec)
+                    }
+                }
+            ]
+        }
+    }
+
+
+    if (options.sortPrec !== undefined) {
+        sort = {
+            valor: String(options.sortPrec)
+        }
+    }
+
+    if (options.desconto === "true") {
+        console.log(Boolean(options.desconto))
+        filter = {...filter,
+            desconto: {
+                gt: 0
+            }
+        }
+    }
+
+    const produto = await prisma.produto.findMany({
+        select: {
+            id: true,
+            nome: true,
+            valor: true,
+            descricao: true,
+            imagem: true,
+            modelo: true,
+            mtl: true,
+            textura: true,
+            superficie: true,
+            desconto: true,
+            medidas: true,
+            categorias: {
+                select: {
+                    categoria: {
+                        select: {
+                            nome: true
+                        }
+                    }
+                }
+            }
+        },
+        skip: (page * 15 - 15),
+        take: 15,
+        where: filter,
+        orderBy: sort
+    })
+
+    res.status(200).json(produto).end()
+}
+
+const readHl = async (req, res) => {
+    const produto = await prisma.produto.findMany({
+        select: {
+            id: true,
+            nome: true,
+            valor: true,
+            descricao: true,
+            imagem: true,
+            modelo: true,
+            mtl: true,
+            textura: true,
+            superficie: true,
+            desconto: true,
+            medidas: true,
+            categorias: {
+                select: {
+                    categoria: {
+                        select: {
+                            nome: true
+                        }
+                    }
+                }
+            }
+        },
+        where: {
+            desconto: {
+                gt: 0
+            }
+        },
+        orderBy: {
+            desconto: 'desc'
+        }
+    })
+
+    res.status(200).json(produto).end()
+}
+
+const readOne = async (req, res) => {
+    const page = req.params.page
+    const produto = await prisma.produto.findFirst({
+        select: {
+            id: true,
+            nome: true,
+            valor: true,
+            descricao: true,
+            imagem: true,
+            modelo: true,
+            mtl: true,
+            textura: true,
+            superficie: true,
+            desconto: true,
+            medidas: true,
+            categorias: {
+                select: {
+                    categoria: {
+                        select: {
+                            nome: true
+                        }
+                    }
+                }
+            }
+        },
+        where: {
+            id: Number(req.params.id)
+        }
+    })
+
+    res.status(200).json(produto).end()
+}
+
 const update = async (req, res) => {
     let id = Number(req.body.id)
     delete req.body.id
@@ -103,5 +243,8 @@ module.exports = {
     read,
     create,
     update,
-    remove
+    remove,
+    read15,
+    readHl,
+    readOne
 }

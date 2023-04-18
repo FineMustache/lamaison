@@ -14,11 +14,15 @@ router.get("/arquivos/:fileName", arquivos.read)
 
 router.post("/produto", produto.create);
 router.get("/produto", produto.read);
+router.get("/produto/page/:page", produto.read15)
+router.get("/produto/destaques", produto.readHl)
+router.get("/produto/:id", produto.readOne)
 router.put("/produto", produto.update);
 router.delete("/produto", produto.remove);
 
 router.post("/categoria", categoria.create);
 router.get("/categoria", categoria.read);
+router.get("/categoria/:tag/:page", categoria.read15);
 router.put("/categoria", categoria.update);
 router.delete("/categoria", categoria.remove);
 
