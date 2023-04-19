@@ -49,28 +49,17 @@ const create = async (req, res) => {
 const read = async (req, res) => {
     
     const produto = await prisma.produto.findMany({
-        select: {
-            id: true,
-            nome: true,
-            valor: true,
-            descricao: true,
-            imagem: true,
-            modelo: true,
-            mtl: true,
-            textura: true,
-            superficie: true,
-            desconto: true,
-            medidas: true,
+        include: {
             categorias: {
                 select: {
                     categoria: {
                         select: {
-                            nome: true
+                            nome: true,
+                            id: true
                         }
                     }
                 }
             }
-
         }
     })
 
@@ -132,7 +121,8 @@ const read15 = async (req, res) => {
                 select: {
                     categoria: {
                         select: {
-                            nome: true
+                            nome: true,
+                            id: true
                         }
                     }
                 }
@@ -165,7 +155,8 @@ const readHl = async (req, res) => {
                 select: {
                     categoria: {
                         select: {
-                            nome: true
+                            nome: true,
+                            id: true
                         }
                     }
                 }
@@ -203,7 +194,8 @@ const readOne = async (req, res) => {
                 select: {
                     categoria: {
                         select: {
-                            nome: true
+                            nome: true,
+                            id: true
                         }
                     }
                 }
