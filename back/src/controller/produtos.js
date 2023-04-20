@@ -9,7 +9,6 @@ const storage = multer.diskStorage({
         cb(null, './uploads/')
     },
     filename: function (req, file, cb) {
-        console.log(file)
         var datetimestamp = Date.now();
         cb(null, file.originalname.split('.')[0] + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
     }
@@ -83,6 +82,9 @@ const read15 = async (req, res) => {
                     valor: {
                         lte: Number(options.maxPrec)
                     }
+                },
+                {
+
                 }
             ]
         }
@@ -96,10 +98,21 @@ const read15 = async (req, res) => {
     }
 
     if (options.desconto === "true") {
-        console.log(Boolean(options.desconto))
         filter = {...filter,
             desconto: {
                 gt: 0
+            }
+        }
+    }
+
+    if (options.tag !== "all") {
+        filter = {...filter,
+            categorias: {
+                some: {
+                    categoria: {
+                        nome: options.tag.replace('_', ' ')
+                    }
+                }
             }
         }
     }
