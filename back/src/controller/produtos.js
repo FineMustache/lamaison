@@ -134,7 +134,11 @@ const read15 = async (req, res) => {
         orderBy: sort
     })
 
-    res.status(200).json(produto).end()
+    const count = await prisma.produto.count({
+        where: filter,
+    })
+
+    res.status(200).json({produtos: produto, count}).end()
 }
 
 const readHl = async (req, res) => {
@@ -173,6 +177,12 @@ const readHl = async (req, res) => {
     })
 
     res.status(200).json(produto).end()
+}
+
+const readCount = async (req, res) => {
+    const count = await prisma.produto.count()
+
+    res.status(200).json({"count": count}).end()
 }
 
 const readOne = async (req, res) => {
@@ -238,5 +248,6 @@ module.exports = {
     remove,
     read15,
     readHl,
-    readOne
+    readOne,
+    readCount
 }

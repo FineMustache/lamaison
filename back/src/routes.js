@@ -17,6 +17,7 @@ router.get("/produto", produto.read);
 router.get("/produto/page/:page", produto.read15)
 router.get("/produto/destaques", produto.readHl)
 router.get("/produto/:id", produto.readOne)
+router.get("/produtos/count", produto.readCount)
 router.put("/produto", produto.update);
 router.delete("/produto", produto.remove);
 
