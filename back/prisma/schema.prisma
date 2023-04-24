@@ -62,6 +62,7 @@ model compra {
   data_compra DateTime @default(now())
   data_entrega DateTime?
   id_usuario Int
+  pago Boolean @default(false)
   usuario usuario @relation(fields: [id_usuario], references: [id])
   produtos compra_produto[]
 }

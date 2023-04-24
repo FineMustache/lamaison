@@ -105,7 +105,7 @@ const read15 = async (req, res) => {
         }
     }
 
-    if (options.tag !== "all") {
+    if (options.tag !== "all" && options.tag !== undefined) {
         filter = {...filter,
             categorias: {
                 some: {

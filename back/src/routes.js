@@ -36,6 +36,7 @@ router.post("/compra", compra.create);
 router.get("/compra", compra.read);
 router.put("/compra", compra.update);
 router.delete("/compra", compra.remove);
+router.get("/teste", compra.test)
 
 router.post("/compraProd", compra_produto.create);
 router.get("/compraProd", compra_produto.read);
