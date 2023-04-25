@@ -9,7 +9,9 @@ const read = (req, res) => {
         root: path.join(__dirname.split('src')[0])
     }
     res.sendFile(`uploads/${req.params.fileName}`, options, function (err) {
-        console.log(err)
+        if (err) {
+            console.log(err)   
+        }
     })
 }
 

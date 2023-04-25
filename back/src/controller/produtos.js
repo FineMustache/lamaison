@@ -186,7 +186,8 @@ const readHl = async (req, res) => {
         },
         orderBy: {
             desconto: 'desc'
-        }
+        },
+        take: 10
     })
 
     res.status(200).json(produto).end()
