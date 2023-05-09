@@ -9,6 +9,7 @@ const compra = require("./controller/compra")
 const compra_produto = require("./controller/compraProd")
 const desejo = require("./controller/desejo")
 const arquivos = require("./controller/arquivos")
+const middleware = require("./middleware/middleware")
 
 router.get("/arquivos/:fileName", arquivos.read)
 
@@ -50,5 +51,6 @@ router.delete("/desejo", desejo.remove);
 
 router.post("/usuario", usuario.create);
 router.post("/usuarioLogin", usuario.login);
+router.post("/usuario/validar", middleware.verificar)
 
 module.exports = router;

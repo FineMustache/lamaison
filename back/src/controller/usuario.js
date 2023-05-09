@@ -29,7 +29,7 @@ const login = async (req, res) => {
             email: req.body.email
         }
     }).then((value) => { return (value) })
-        .catch((err) => { return { "erro": "Usuário Incorreto", "validacao": false } })
+        .catch((err) => { return { "erro": "Email não cadastrado", "validacao": false } })
 
     if (usuario.erro == null) {
         bcrypt.compare(req.body.senha, usuario.senha).then((value) => {

@@ -56,7 +56,7 @@ const remove = async (req, res) => {
 }
 
 const test = async (req, res) => {
-    const pix = new Pix(process.env.CHAVE_PIX, `Compra de X produtos`, 'La Maison', 'Pedreira', crypto.randomBytes(32).toString('hex'), 5)
+    const pix = new Pix(process.env.CHAVE_PIX, `Compra de X produtos`, 'La Maison', 'Pedreira', crypto.randomBytes(32).toString('hex'), 10)
 
     res.status(200).json({cod: pix.getPayload()}).end()
 }
