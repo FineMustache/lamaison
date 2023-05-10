@@ -23,6 +23,7 @@ model usuario {
   telefone String?
   compras compra[]
   desejos desejo[]
+  verificado Boolean @default(false)
 }
 
 model categoria {

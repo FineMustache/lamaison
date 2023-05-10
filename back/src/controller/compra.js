@@ -2,6 +2,7 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 const Pix = require('./Pix')
 const crypto = require('crypto')
+const Email = require('../controller/email')
 
 const create = async (req, res) => {
     const info = req.body
@@ -56,9 +57,11 @@ const remove = async (req, res) => {
 }
 
 const test = async (req, res) => {
-    const pix = new Pix(process.env.CHAVE_PIX, `Compra de X produtos`, 'La Maison', 'Pedreira', crypto.randomBytes(32).toString('hex'), 10)
-
-    res.status(200).json({cod: pix.getPayload()}).end()
+    // const pix = new Pix(process.env.CHAVE_PIX, `Compra de X produtos`, 'La Maison', 'Pedreira', crypto.randomBytes(32).toString('hex'), 10)
+    console.log('entetent')
+    // res.status(200).json({cod: pix.getPayload()}).end()
+    Email.send()
+    res.send('meu pai')
 }
 
 module.exports = {

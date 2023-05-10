@@ -12,7 +12,15 @@ const create = async (req, res) => {
                     const usuario = await prisma.usuario.create({
                         data: req.body
                     })
-                    res.status(200).json(usuario).end()
+                    let data = {"uid": usuario.id}
+                    jwt.sign(data, process.env.KEY, {expiresIn: '1h'}, function(err2, token) {
+                        if(err2 == null){
+                            res.status(200).json({...usuario, token}).end()
+                        } else {
+                            res.status(500).json(err2).end()
+                        }
+                    })
+                    
                 } else {
                     console.log(errCrypto)
                     res.status(500).json(errCrypto).end()
@@ -22,6 +30,7 @@ const create = async (req, res) => {
             res.status(500).json(err).end()
         }
     })
+
 }
 const login = async (req, res) => {
     const usuario = await prisma.usuario.findFirstOrThrow({
@@ -55,7 +64,21 @@ const login = async (req, res) => {
 
 }
 
+const verify = async (req, res) => {
+    const usuario = await prisma.usuario.update({
+        where: {
+            id: Number(req.uid)
+        },
+        data: {
+            verificado: true
+        }
+    })
+
+    res.status(200).json({'validado': true}).end()
+}
+
 module.exports = {
     create,
     login,
+    verify
 }

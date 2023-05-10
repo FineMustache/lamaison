@@ -52,5 +52,6 @@ router.delete("/desejo", desejo.remove);
 router.post("/usuario", usuario.create);
 router.post("/usuarioLogin", usuario.login);
 router.post("/usuario/validar", middleware.verificar)
+router.post("/usuario/verificar/:token", middleware.verificarConta, usuario.verify)
 
 module.exports = router;

@@ -22,6 +22,18 @@ const verificar = (req, res) => {
     })
 }
 
+const verificarConta = (req, res, next) => {
+    const token = req.params.token
+
+    jwt.verify(token, process.env.KEY, (err, data) => {
+        if (err == null) {
+            req.uid = data.uid
+            next()
+        }
+    })
+}
+
 module.exports = {
-    verificar
+    verificar,
+    verificarConta
 }
