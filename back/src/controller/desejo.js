@@ -12,7 +12,22 @@ const create = async (req, res) => {
 }
 
 const read = async (req, res) => {
-    const desejo = await prisma.desejo.findMany()
+    const desejo = await prisma.desejo.findMany({
+        where: {
+            id_usuario: Number(req.params.id)
+        },
+        include: {
+            produto: {
+                include: {
+                    categorias: {
+                        include: {
+                            categoria: true
+                        }
+                    }
+                }
+            }
+        }
+    })
 
     res.status(200).json(desejo).end()
 }

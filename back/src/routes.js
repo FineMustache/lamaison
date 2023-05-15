@@ -45,13 +45,13 @@ router.put("/compraProd", compra_produto.update);
 router.delete("/compraProd", compra_produto.remove);
 
 router.post("/desejo", desejo.create);
-router.get("/desejo", desejo.read);
+router.get("/desejo/:id", desejo.read);
 router.put("/desejo", desejo.update);
 router.delete("/desejo", desejo.remove);
 
 router.post("/usuario", usuario.create);
 router.post("/usuarioLogin", usuario.login);
 router.post("/usuario/validar", middleware.verificar)
-router.post("/usuario/verificar/:token", middleware.verificarConta, usuario.verify)
+router.post("/usuario/verificar/", middleware.verificarConta, usuario.verify)
 
 module.exports = router;

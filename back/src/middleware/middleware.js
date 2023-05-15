@@ -23,12 +23,14 @@ const verificar = (req, res) => {
 }
 
 const verificarConta = (req, res, next) => {
-    const token = req.params.token
+    const token = req.headers.authorization
 
     jwt.verify(token, process.env.KEY, (err, data) => {
         if (err == null) {
             req.uid = data.uid
             next()
+        } else {
+            res.status(400).json({validado: false}).end()
         }
     })
 }

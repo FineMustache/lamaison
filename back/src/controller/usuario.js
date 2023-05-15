@@ -13,7 +13,7 @@ const create = async (req, res) => {
                         data: req.body
                     })
                     let data = {"uid": usuario.id}
-                    jwt.sign(data, process.env.KEY, {expiresIn: '1h'}, function(err2, token) {
+                    jwt.sign(data, process.env.KEY, function(err2, token) {
                         if(err2 == null){
                             res.status(200).json({...usuario, token}).end()
                         } else {
@@ -41,22 +41,28 @@ const login = async (req, res) => {
         .catch((err) => { return { "erro": "Email não cadastrado", "validacao": false } })
 
     if (usuario.erro == null) {
-        bcrypt.compare(req.body.senha, usuario.senha).then((value) => {
-            if (value) {
-                let data = { "userid": usuario.id}
-                jwt.sign(data, process.env.KEY, { expiresIn: '10m' }, function (err2, token) {
-                    if (err2 == null) {
-
-                        res.status(200).json({ "userid": usuario.id, "token": token, "nome": usuario.nome, "validacao": true }).end()
-                    } else {
-                        res.status(500).json(err2).end()
-                    }
-
-                })
-            } else {
-                res.status(201).json({ "erro": "Senha incorreta", "validacao": false }).end()
-            }
-        })
+        
+            bcrypt.compare(req.body.senha, usuario.senha).then((value) => {
+                if (value) {
+                    let data = { "userid": usuario.id}
+                    jwt.sign(data, process.env.KEY, { expiresIn: '10m' }, function (err2, token) {
+                        if (err2 == null) {
+                            if (usuario.verificado) {
+                                res.status(200).json({ "userid": usuario.id, "token": token, "nome": usuario.nome, "email": usuario.email, "validacao": true }).end()
+                            } else {
+                                res.status(400).json({"erro": "Usuário não verificado", "validacao": false})
+                            }
+                        } else {
+                            res.status(500).json(err2).end()
+                        }
+    
+                    })
+                } else {
+                    res.status(201).json({ "erro": "Senha incorreta", "validacao": false }).end()
+                }
+            })
+        
+        
     } else {
         res.status(404).json(usuario).end()
     }
