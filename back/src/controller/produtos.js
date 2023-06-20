@@ -1,51 +1,107 @@
-const { PrismaClient } = require('@prisma/client')
-
-const prisma = new PrismaClient()
+const { PrismaClient } = require('@prisma/client');
+const { BlobServiceClient } = require('@azure/storage-blob');
 const multer = require('multer');
-const path = require('path')
+const path = require('path');
+
+const prisma = new PrismaClient();
+const connectionString = process.env.AZURE_CONTAINER_CONNECTION_STRING; // Substitua pela sua string de conexão do Azure Blob Storage
+const containerName = "arquivos"; // Substitua pelo nome do seu container no Azure Blob Storage
+
+const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
+const containerClient = blobServiceClient.getContainerClient(containerName);
 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads/')
-    },
-    filename: function (req, file, cb) {
-        var datetimestamp = Date.now();
-        cb(null, file.originalname.split('.')[0] + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
-    }
+  destination: function (req, file, cb) {
+    cb(null, '');
+  },
+  filename: function (req, file, cb) {
+    var datetimestamp = Date.now();
+    cb(null, file.originalname.split('.')[0] + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
+  }
 });
+
+const uploadFile = async (containerClient, file) => {
+  const blobName = file.fieldname + '-' + Date.now() + path.extname(file.originalname);
+  const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+  await blockBlobClient.uploadFile(file.path);
+  console.log("Salvo com sucesso (eu acho): ", blobName)
+  return blobName;
+};
+
 const parser = multer({ storage });
+
 const create = async (req, res) => {
     parser.fields([{ name: 'img' }, { name: 'textura' }, { name: 'modelo' }, { name: 'mtl' }])(req, res, async err => {
-        if (err)
-            res.status(500).json({ error: 1, payload: err }).end();
-        else {
-            if (req.files.modelo == undefined) {
-                req.files.modelo = [{filename: null}]
-                req.files.mtl = [{filename: null}]
-                req.files.textura = [{filename: null}]
-            }
-            const produto = await prisma.produto.create({
-                data: {
-                    nome: req.body.nome,
-                    valor: Number(req.body.valor),
-                    descricao: req.body.descricao,
-                    imagem: req.files.img[0].filename,
-                    modelo: req.files.modelo[0].filename,
-                    mtl: req.files.mtl[0].filename,
-                    textura: req.files.textura[0].filename,
-                    superficie: req.body.superficie,
-                    desconto: Number(req.body.desconto),
-                    medidas: req.body.medidas
-
-                }
-            })
-
-            res.status(200).json(produto).end()
+      if (err) {
+        res.status(500).json({ error: 1, payload: err }).end();
+      } else {
+        const imgFile = req.files.img ? req.files.img[0] : null;
+        const modeloFile = req.files.modelo ? req.files.modelo[0] : null;
+        const mtlFile = req.files.mtl ? req.files.mtl[0] : null;
+        const texturaFile = req.files.textura ? req.files.textura[0] : null;
+  
+        let img, modelo, mtl, textura;
+  
+        if (imgFile) {
+          img = await uploadFile(containerClient, imgFile);
+        } else {
+          img = null; // ou atribua um valor padrão se desejar
         }
+  
+        if (modeloFile) {
+          modelo = await uploadFile(containerClient, modeloFile);
+        } else {
+          modelo = null; // ou atribua um valor padrão se desejar
+        }
+  
+        if (mtlFile) {
+          mtl = await uploadFile(containerClient, mtlFile);
+        } else {
+          mtl = null; // ou atribua um valor padrão se desejar
+        }
+  
+        if (texturaFile) {
+          textura = await uploadFile(containerClient, texturaFile);
+        } else {
+          textura = null; // ou atribua um valor padrão se desejar
+        }
+  
+        const produto = await prisma.produto.create({
+          data: {
+            nome: req.body.nome,
+            valor: Number(req.body.valor),
+            descricao: req.body.descricao,
+            imagem: img,
+            modelo: modelo,
+            mtl: mtl,
+            textura: textura,
+            superficie: req.body.superficie,
+            desconto: Number(req.body.desconto),
+            medidas: req.body.medidas
+          }
+        });
+  
+        res.status(200).json(produto).end();
+      }
     });
-}
+  };
+  
 
 const read = async (req, res) => {
+    const options = req.query
+    var filter = {}
+    
+    if(options.tag !== undefined){
+      filter = {
+        categorias: {
+                some: {
+                    categoria: {
+                        nome: options.tag.replace('_', ' ')
+                    }
+                }
+            }
+      }
+    }
     
     const produto = await prisma.produto.findMany({
         include: {
@@ -59,17 +115,24 @@ const read = async (req, res) => {
                     }
                 }
             }
-        }
+        },
+        where: filter
     })
 
     res.status(200).json(produto).end()
 }
 
-const read15 = async (req, res) => {
+const readNumber = async (req, res) => {
     const page = req.params.page
     const options = req.query
     var filter = {}
     var sort = {}
+    var np = {}
+    if(options.np !== undefined){
+      np = Number(options.np)
+    } else {
+      np = 15
+    }
     if (options.minPrec !== undefined) {
         filter = {
             AND: [
@@ -82,12 +145,27 @@ const read15 = async (req, res) => {
                     valor: {
                         lte: Number(options.maxPrec)
                     }
-                },
-                {
-
                 }
             ]
         }
+    }
+  
+    if (options.nome !== undefined){
+      if (filter.AND !== undefined){
+        filter.AND.push(
+                      {
+                        nome: {
+                          contains: options.nome
+                        }
+                      }
+                     )
+      } else {
+        filter = {
+                        nome: {
+                          contains: options.nome
+                        }
+                      }
+      }
     }
 
 
@@ -141,8 +219,8 @@ const read15 = async (req, res) => {
                 }
             }
         },
-        skip: (page * 15 - 15),
-        take: 15,
+        skip: (page * np - np),
+        take: np,
         where: filter,
         orderBy: sort
     })
@@ -260,7 +338,7 @@ module.exports = {
     create,
     update,
     remove,
-    read15,
+    readNumber,
     readHl,
     readOne,
     readCount

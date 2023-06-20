@@ -1,0 +1,171 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.myviroapp"
+4    android:versionCode="1004"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml
+10
+11    <queries>
+11-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:4:5-6:15
+12        <package android:name="com.google.ar.core" />
+12-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:5:9-54
+12-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:5:18-51
+13    </queries>
+14
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:7:5-67
+15-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:7:22-64
+16    <uses-permission android:name="android.permission.CAMERA" />
+16-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:8:5-65
+16-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:8:22-62
+17    <!-- You may need these if doing any screen recording from within the app -->
+18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+18-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:10:5-79
+18-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:10:22-77
+19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+19-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:11:5-80
+19-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:11:22-78
+20    <!-- Other camera related features -->
+21    <uses-feature android:name="android.hardware.camera.ar" />
+21-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:13:5-63
+21-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:13:19-60
+22    <uses-feature android:name="android.hardware.camera" />
+22-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:14:5-60
+22-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:14:19-57
+23    <uses-feature
+23-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:15:5-119
+24        android:name="android.hardware.camera.autofocus"
+24-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:15:19-67
+25        android:required="false" />
+25-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:15:68-92
+26    <!-- Usage of accelerometer and gyroscope -->
+27    <uses-feature
+27-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:19:5-124
+28        android:name="android.hardware.sensor.accelerometer"
+28-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:19:19-71
+29        android:required="false" />
+29-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:19:72-96
+30    <uses-feature
+30-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:20:5-120
+31        android:name="android.hardware.sensor.gyroscope"
+31-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:20:19-67
+32        android:required="false" />
+32-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:20:68-92
+33    <!-- Required for vibration feedback when the trigger action is performed. -->
+34    <uses-permission android:name="android.permission.VIBRATE" /> <!-- Required for Recording -->
+34-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:16:5-66
+34-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:16:22-63
+35    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- Required to detect viewer insertion. -->
+35-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:20:5-71
+35-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:20:22-68
+36    <uses-permission android:name="android.permission.NFC" /> <!-- Indicates use of Android's VR-mode, available only on Android N+. -->
+36-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:23:5-62
+36-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:23:22-59
+37    <uses-feature
+37-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:36:5-38:36
+38        android:name="android.software.vr.mode"
+38-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:37:9-48
+39        android:required="false" /> <!-- Indicates use of VR features that are available only on Daydream-ready devices. -->
+39-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:38:9-33
+40    <uses-feature
+40-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:40:5-42:36
+41        android:name="android.hardware.vr.high_performance"
+41-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:41:9-60
+42        android:required="false" />
+42-->[:viro_renderer] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\viro_renderer\build\.transforms\0ccea17859b0cfc71691218087c7cab7\transformed\jetified-viro_renderer-release\AndroidManifest.xml:42:9-33
+43
+44    <application
+44-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:23:5-47:19
+45        android:name="com.myviroapp.MainApplication"
+45-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:24:7-38
+46        android:allowBackup="false"
+46-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:28:7-34
+47        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+47-->[androidx.core:core:1.0.1] C:\Users\des\.gradle\caches\transforms-3\b9897e67809a07f01cf6c8f71f9cd815\transformed\core-1.0.1\AndroidManifest.xml:22:18-86
+48        android:extractNativeLibs="false"
+49        android:icon="@mipmap/ic_launcher"
+49-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:26:7-41
+50        android:label="@string/app_name"
+50-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:25:7-39
+51        android:roundIcon="@mipmap/ic_launcher_round"
+51-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:27:7-52
+52        android:supportsRtl="true"
+52-->[:react_viro] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\react_viro\build\.transforms\d427e71f5d127ecdd376a959126f17ff\transformed\jetified-react_viro-release\AndroidManifest.xml:13:9-35
+53        android:theme="@style/AppTheme"
+53-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:30:7-38
+54        android:usesCleartextTraffic="true" >
+54-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:29:7-42
+55        <meta-data
+55-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:31:7-79
+56            android:name="com.google.ar.core"
+56-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:31:18-51
+57            android:value="required" />
+57-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:31:52-76
+58
+59        <activity
+59-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:32:7-46:18
+60            android:name="com.myviroapp.MainActivity"
+60-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:33:9-37
+61            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+61-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:35:9-86
+62            android:label="@string/app_name"
+62-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:34:9-41
+63            android:launchMode="singleTask"
+63-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:36:9-40
+64            android:windowSoftInputMode="adjustResize" >
+64-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:37:9-51
+65            <intent-filter>
+65-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:38:9-45:25
+66                <action android:name="android.intent.action.MAIN" />
+66-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:39:13-65
+66-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:39:21-62
+67
+68                <category android:name="android.intent.category.LAUNCHER" />
+68-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:40:13-73
+68-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:40:23-70
+69
+70                <action android:name="android.intent.action.VIEW" />
+70-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:41:13-65
+70-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:41:21-62
+71
+72                <category android:name="android.intent.category.DEFAULT" />
+72-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:42:13-72
+72-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:42:23-69
+73                <category android:name="android.intent.category.BROWSABLE" />
+73-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:43:13-74
+73-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:43:23-71
+74
+75                <data android:scheme="lmscan" />
+75-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:44:13-45
+75-->C:\Users\des\Documents\lamaison-mobile\android\app\src\main\AndroidManifest.xml:44:19-42
+76            </intent-filter>
+77        </activity>
+78        <!-- The minimal version code of ARCore APK required for an app using this SDK. -->
+79        <meta-data
+79-->[:arcore_client] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\arcore_client\build\.transforms\bfc171495302288c75729a7f5f33ba69\transformed\jetified-core-1.10.0\AndroidManifest.xml:33:9-35:41
+80            android:name="com.google.ar.core.min_apk_version"
+80-->[:arcore_client] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\arcore_client\build\.transforms\bfc171495302288c75729a7f5f33ba69\transformed\jetified-core-1.10.0\AndroidManifest.xml:34:13-62
+81            android:value="190519000" /> <!-- This activity is critical for installing ARCore when it is not already present. -->
+81-->[:arcore_client] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\arcore_client\build\.transforms\bfc171495302288c75729a7f5f33ba69\transformed\jetified-core-1.10.0\AndroidManifest.xml:35:13-38
+82        <activity
+82-->[:arcore_client] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\arcore_client\build\.transforms\bfc171495302288c75729a7f5f33ba69\transformed\jetified-core-1.10.0\AndroidManifest.xml:37:9-43:80
+83            android:name="com.google.ar.core.InstallActivity"
+83-->[:arcore_client] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\arcore_client\build\.transforms\bfc171495302288c75729a7f5f33ba69\transformed\jetified-core-1.10.0\AndroidManifest.xml:38:13-62
+84            android:configChanges="keyboardHidden|orientation|screenSize"
+84-->[:arcore_client] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\arcore_client\build\.transforms\bfc171495302288c75729a7f5f33ba69\transformed\jetified-core-1.10.0\AndroidManifest.xml:39:13-74
+85            android:excludeFromRecents="true"
+85-->[:arcore_client] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\arcore_client\build\.transforms\bfc171495302288c75729a7f5f33ba69\transformed\jetified-core-1.10.0\AndroidManifest.xml:40:13-46
+86            android:exported="false"
+86-->[:arcore_client] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\arcore_client\build\.transforms\bfc171495302288c75729a7f5f33ba69\transformed\jetified-core-1.10.0\AndroidManifest.xml:41:13-37
+87            android:launchMode="singleTop"
+87-->[:arcore_client] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\arcore_client\build\.transforms\bfc171495302288c75729a7f5f33ba69\transformed\jetified-core-1.10.0\AndroidManifest.xml:42:13-43
+88            android:theme="@android:style/Theme.Material.Light.Dialog.Alert" />
+88-->[:arcore_client] C:\Users\des\Documents\lamaison-mobile\node_modules\@viro-community\react-viro\android\arcore_client\build\.transforms\bfc171495302288c75729a7f5f33ba69\transformed\jetified-core-1.10.0\AndroidManifest.xml:43:13-77
+89    </application>
+90
+91</manifest>

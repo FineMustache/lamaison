@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Catálogo LaMaison",
+    "slug": "lamaison-cat",
+    "version": "1.0.0",
+    "githubUrl": "https://github.com/sanzappa/lamaison-cat",
+    "primaryColor": "#000000",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.finemustache.lamaisoncat"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "156555a8-20a7-4186-8460-27ee3546306e"
+      }
+    }
+  }
+}

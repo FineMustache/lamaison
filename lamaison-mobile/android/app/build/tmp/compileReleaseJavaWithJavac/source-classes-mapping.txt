@@ -1,0 +1,9 @@
+com/myviroapp/MainActivity.java
+ com.myviroapp.MainActivity
+com/myviroapp/BuildConfig.java
+ com.myviroapp.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/myviroapp/MainApplication.java
+ com.myviroapp.MainApplication
+ com.myviroapp.MainApplication$1

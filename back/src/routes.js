@@ -8,14 +8,11 @@ const produto_categoria = require("./controller/produtoCat")
 const compra = require("./controller/compra")
 const compra_produto = require("./controller/compraProd")
 const desejo = require("./controller/desejo")
-const arquivos = require("./controller/arquivos")
 const middleware = require("./middleware/middleware")
-
-router.get("/arquivos/:fileName", arquivos.read)
 
 router.post("/produto", produto.create);
 router.get("/produto", produto.read);
-router.get("/produto/page/:page", produto.read15)
+router.get("/produto/page/:page", produto.readNumber)
 router.get("/produto/destaques", produto.readHl)
 router.get("/produto/:id", produto.readOne)
 router.get("/produtos/count", produto.readCount)
@@ -35,9 +32,9 @@ router.delete("/prodC", produto_categoria.remove);
 
 router.post("/compra", compra.create);
 router.get("/compra", compra.read);
+router.get("/compra/:id", compra.readUser);
 router.put("/compra", compra.update);
 router.delete("/compra", compra.remove);
-router.get("/teste", compra.test)
 
 router.post("/compraProd", compra_produto.create);
 router.get("/compraProd", compra_produto.read);
@@ -53,5 +50,7 @@ router.post("/usuario", usuario.create);
 router.post("/usuarioLogin", usuario.login);
 router.post("/usuario/validar", middleware.verificar)
 router.post("/usuario/verificar/", middleware.verificarConta, usuario.verify)
+
+router.get("/all", usuario.teste)
 
 module.exports = router;

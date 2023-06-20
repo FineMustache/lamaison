@@ -1,17 +1,27 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
-const Pix = require('./Pix')
 const crypto = require('crypto')
 const Email = require('../controller/email')
 
 const create = async (req, res) => {
     const info = req.body
-
-    const compra = await prisma.compra.create({
-        data: info
-    })
-
+    console.log(info)
+    
     var valor = 0
+    req.body.produtos.forEach(async p => {
+        valor += (p.valor - (p.valor * p.desconto / 100)) * p.qtde
+    })
+  
+    const data = {
+      valor: parseFloat(valor.toFixed(2)),
+      data_entrega: null,
+      id_usuario: info.id_usuario,
+      pago: true
+    }
+    
+    const compra = await prisma.compra.create({
+        data: data
+    })    
 
     req.body.produtos.forEach(async p => {
         await prisma.compra_produto.create({
@@ -22,14 +32,36 @@ const create = async (req, res) => {
         })
         valor += p.valor - (p.valor * p.desconto / 100)
     })
-
-    const pix = new Pix(process.env.CHAVE_PIX, `Compra de ${req.body.produtos.length} produtos`, 'La Maison', 'Pedreira', crypto.randomBytes(32).toString('hex'), valor)
-
-    res.status(200).json(pix).end()
+    Email.send(1, info.user.email, info)
+    res.status(200).json({...info, success: true}).end()
 }
 
 const read = async (req, res) => {
-    const compra = await prisma.compra.findMany()
+    const compra = await prisma.compra.findMany({
+      include: {
+        produtos: true
+      }
+    })
+
+    res.status(200).json(compra).end()
+}
+
+const readUser = async (req, res) => {
+    const compra = await prisma.compra.findMany({
+      include: {
+        produtos: {
+          include: {
+            produto: true
+          }
+        }
+      },
+      where: {
+        id_usuario: Number(req.params.id)
+      },
+      orderBy: {
+        data_compra: 'desc'
+      }
+    })
 
     res.status(200).json(compra).end()
 }
@@ -56,18 +88,10 @@ const remove = async (req, res) => {
     res.status(200).json(compra).end()
 }
 
-const test = async (req, res) => {
-    // const pix = new Pix(process.env.CHAVE_PIX, `Compra de X produtos`, 'La Maison', 'Pedreira', crypto.randomBytes(32).toString('hex'), 10)
-    console.log('entetent')
-    // res.status(200).json({cod: pix.getPayload()}).end()
-    Email.send()
-    res.send('meu pai')
-}
-
 module.exports = {
     create,
     read,
+    readUser,
     update,
-    remove,
-    test
+    remove
 }

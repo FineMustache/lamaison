@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const jwt = require('jsonwebtoken')
+const Email = require('./email')
 
 const create = async (req, res) => {
     bcrypt.genSalt(10, function (err, salt) {
@@ -15,6 +16,7 @@ const create = async (req, res) => {
                     let data = {"uid": usuario.id}
                     jwt.sign(data, process.env.KEY, function(err2, token) {
                         if(err2 == null){
+                            Email.send(0, usuario.email, token)
                             res.status(200).json({...usuario, token}).end()
                         } else {
                             res.status(500).json(err2).end()
@@ -83,8 +85,25 @@ const verify = async (req, res) => {
     res.status(200).json({'validado': true}).end()
 }
 
+const teste = async (req, res) => {
+    const usuario = await prisma.usuario.findMany()
+    const categoria = await prisma.categoria.findMany()
+    const produto = await prisma.produto.findMany()
+    const produto_cat = await prisma.produto_categoria.findMany()
+    const compra = await prisma.compra.findMany()
+    const compra_prod = await prisma.compra_produto.findMany()
+    const desejo = await prisma.desejo.findMany()
+    
+    const data = {
+      usuario, categoria, produto, produto_cat, compra, compra_prod, desejo
+    }
+    
+    res.json(data).end()
+}
+
 module.exports = {
     create,
     login,
-    verify
+    verify,
+    teste
 }

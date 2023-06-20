@@ -1,0 +1,14 @@
+com/myviroapp/MainActivity.java
+ com.myviroapp.MainActivity
+com/myviroapp/BuildConfig.java
+ com.myviroapp.BuildConfig
+com/myviroapp/ReactNativeFlipper.java
+ com.myviroapp.ReactNativeFlipper
+ com.myviroapp.ReactNativeFlipper$1
+ com.myviroapp.ReactNativeFlipper$2
+ com.myviroapp.ReactNativeFlipper$2$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/myviroapp/MainApplication.java
+ com.myviroapp.MainApplication
+ com.myviroapp.MainApplication$1
